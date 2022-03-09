@@ -16,8 +16,7 @@
 
   <main id="channels" class="wrapper__main js-content">
     <div id="channel-0" class="channel hidden">
-      <img class="channel__image"
-        src="" />
+      <img class="channel__image" src="" />
       <h2 class="channel__name">Fun Fun Function</h2>
       <div class="channel__info">
         <div class="channel__el">
@@ -29,8 +28,8 @@
           <p class="channel__count videos">0</p>
         </div>
         <div class="channel__el">
-          <p class="channel__title views">views:</p>
-          <p class="channel__count">0</p>
+          <p class="channel__title">views:</p>
+          <p class="channel__count views">0</p>
         </div>
       </div>
     </div>
@@ -46,19 +45,23 @@
       <h3 class="sort__header">Sort channels by:</h3>
       <ul class="sort__options">
         <li>
-          <input class="choice choice--radio" name="sort" type="radio" id="sort-title">
+          <input onclick="changeSort(this)" class="choice choice--radio" name="sort" value="0" type="radio"
+            id="sort-title">
           <label class="choice__label" for="sort-title">title</label>
         </li>
         <li>
-          <input class="choice choice--radio" name="sort" type="radio" id="sort-subscribers">
+          <input onclick="changeSort(this)" class="choice choice--radio" name="sort" value="1" type="radio"
+            id="sort-subscribers">
           <label class="choice__label" for="sort-subscribers">subscribers</label>
         </li>
         <li>
-          <input class="choice choice--radio" name="sort" type="radio" id="sort-videos">
+          <input onclick="changeSort(this)" class="choice choice--radio" name="sort" value="2" type="radio"
+            id="sort-videos">
           <label class="choice__label" for="sort-videos">videos</label>
         </li>
         <li>
-          <input class="choice choice--radio" name="sort" type="radio" id="sort-views">
+          <input onclick="changeSort(this)" class="choice choice--radio" name="sort" value="3" type="radio"
+            id="sort-views">
           <label class="choice__label" for="sort-views">views</label>
         </li>
       </ul>

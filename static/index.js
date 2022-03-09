@@ -9,7 +9,15 @@ async function getChannels() {
 
 function cerateChannel(channels) {
   const elements = document.getElementById("channels");
-  const element = document.getElementById("channel-0");
+  let element = document.getElementById("channel-0").cloneNode(true);
+
+  let child = elements.lastElementChild;
+  while (child) {
+    elements.removeChild(child);
+    child = elements.lastElementChild;
+  }
+
+  element = elements.appendChild(element);
 
   if (channels.length > 0) {
     element.classList.remove("hidden");
@@ -39,3 +47,13 @@ function changeDataChanel(el, channel, id) {
 }
 
 window.addEventListener("load", getChannels);
+
+async function changeSort(event) {
+  try {
+    console.log(parseInt(event.value))
+    const resp = await axios.get("/channels", { params: { sort: parseInt(event.value) } });
+    cerateChannel(resp.data);
+  } catch (error) {
+    console.log(error);
+  }
+}
