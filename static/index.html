@@ -1,48 +1,72 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>JavaScript Youtube Channels</title>
-        <link rel="stylesheet" type="text/css" href="vendor.css">
-    </head>
-    <body class="wrapper">
-        <header class="wrapper__header">
-          <h1 class="header__js-logo">JS</h1>
-          <h1 class="header">Channels</h1>
-        </header>
-        <main class="wrapper__main js-content">
-        </main>
-        <div class="wrapper__filter">
-            <div class="filter">
-                <input class="filter__input" type="text" placeholder="filter channels...">
-            </div>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Youtube Channels</title>
+  <link rel="stylesheet" type="text/css" href="vendor.css">
+</head>
+
+<body class="wrapper">
+  <header class="wrapper__header">
+    <h1 class="header__js-logo">JS</h1>
+    <h1 class="header">Channels</h1>
+  </header>
+
+  <main id="channels" class="wrapper__main js-content">
+    <div id="channel" class="channel">
+      <img class="channel__image"
+        src="https://yt3.ggpht.com/a-/AN66SAzjMJRUuJm10kRK7ybMLDmXtRH71_F1YapMjw=s800-mo-c-c0xffffffff-rj-k-no" />
+      <h2>Fun Fun Function</h2>
+      <div class="channel__info">
+        <div class="channel__el">
+          <p id="subscribers-count" class="channel__title">subscribers:</p>
+          <p class="channel__count">0</p>
         </div>
-        <aside class="wrapper__aside">
-            <div class="sort"> 
-                <h3 class="sort__header">Sort channels by:</h3>
-                <ul class="sort__options">
-                    <li>
-                        <input class="choice choice--radio" name="sort" type="radio" id="sort-title">
-                        <label class="choice__label" for="sort-title">title</label>
-                    </li>
-                    <li>
-                        <input class="choice choice--radio" name="sort" type="radio" id="sort-subscribers">
-                        <label class="choice__label" for="sort-subscribers">subscribers</label>
-                    </li>
-                    <li>
-                        <input class="choice choice--radio" name="sort" type="radio" id="sort-videos">
-                        <label class="choice__label" for="sort-videos">videos</label>
-                    </li>
-                    <li>
-                        <input class="choice choice--radio" name="sort" type="radio" id="sort-views">
-                        <label class="choice__label" for="sort-views">views</label>
-                    </li>
-                </ul>
-                <button class="button">Clear</button>
-            </div>
-        </aside>
-        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-        <script src="index.js"></script>
-    </body>
+        <div class="channel__el">
+          <p class="channel__title">videos:</p>
+          <p id="videos-count" class="channel__count">0</p>
+        </div>
+        <div class="channel__el">
+          <p id="views-count" class="channel__title">views:</p>
+          <p class="channel__count">0</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div class="wrapper__filter">
+    <div class="filter">
+      <input class="filter__input" type="text" placeholder="filter channels...">
+    </div>
+  </div>
+  <aside class="wrapper__aside">
+    <div class="sort">
+      <h3 class="sort__header">Sort channels by:</h3>
+      <ul class="sort__options">
+        <li>
+          <input class="choice choice--radio" name="sort" type="radio" id="sort-title">
+          <label class="choice__label" for="sort-title">title</label>
+        </li>
+        <li>
+          <input class="choice choice--radio" name="sort" type="radio" id="sort-subscribers">
+          <label class="choice__label" for="sort-subscribers">subscribers</label>
+        </li>
+        <li>
+          <input class="choice choice--radio" name="sort" type="radio" id="sort-videos">
+          <label class="choice__label" for="sort-videos">videos</label>
+        </li>
+        <li>
+          <input class="choice choice--radio" name="sort" type="radio" id="sort-views">
+          <label class="choice__label" for="sort-views">views</label>
+        </li>
+      </ul>
+      <button class="button">Clear</button>
+    </div>
+  </aside>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="index.js"></script>
+</body>
+
 </html>
