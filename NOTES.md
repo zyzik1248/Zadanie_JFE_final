@@ -7,3 +7,7 @@ Projekt utowrzyłam na linuxie (dystrybucja ubuntu) Podczas wykonywania zadania 
 1. chrome
 2. firefox
 3. epiphany - przeglądarka oparta na silniku webkit
+
+## Channels
+
+Dane zwracam za pomocą routingu. W tym calu musiałam pobrać biblioteki koa-body i koa-router. Na Frontendzie dane pobieram za pomocą biblioteki axios.
