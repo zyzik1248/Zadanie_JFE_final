@@ -50,9 +50,41 @@ window.addEventListener("load", getChannels);
 
 async function changeSort(event) {
   try {
-    console.log(parseInt(event.value))
-    const resp = await axios.get("/channels", { params: { sort: parseInt(event.value) } });
+    const sortTypeEl = document.querySelector("[data-sortType]");
+    sortTypeEl.dataset.sortType = event.value;
+    const direction = document.querySelector("[data-sortDirection]");
+
+    await sort(event.value, direction.dataset.sortDirection);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function sort(type, direction) {
+  try {
+    const resp = await axios.get("/channels", {
+      params: { sort: type, direction },
+    });
     cerateChannel(resp.data);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function changeSortDirection(event) {
+  try {
+    const direction = parseInt(event.dataset.sortDirection);
+    const sortTypeEl = document.querySelector("[data-sortType]");
+
+    if (direction == -1) {
+      event.innerHTML = "ascending";
+      event.dataset.sortDirection = 1;
+    } else {
+      event.innerHTML = "descending";
+      event.dataset.sortDirection = -1;
+    }
+
+    await sort(sortTypeEl.dataset.sortType, event.dataset.sortDirection);
   } catch (error) {
     console.log(error);
   }

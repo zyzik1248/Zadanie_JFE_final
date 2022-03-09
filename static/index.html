@@ -43,7 +43,9 @@
   <aside class="wrapper__aside">
     <div class="sort">
       <h3 class="sort__header">Sort channels by:</h3>
-      <ul class="sort__options">
+      <button data-sortDirection="1" onclick="changeSortDirection(this)"
+        class="button">ascending</button>
+      <ul data-sortType="" class="sort__options">
         <li>
           <input onclick="changeSort(this)" class="choice choice--radio" name="sort" value="0" type="radio"
             id="sort-title">
