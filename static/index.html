@@ -45,27 +45,22 @@
   <aside class="wrapper__aside">
     <div class="sort">
       <h3 class="sort__header">Sort channels by:</h3>
-      <button data-sortDirection="1" onclick="changeSortDirection(this)"
-        class="button">ascending</button>
+      <button data-sortDirection="1" class="button">ascending</button>
       <ul data-sortType="" class="sort__options">
         <li>
-          <input onclick="changeSort(this)" class="choice choice--radio" name="sort" value="0" type="radio"
-            id="sort-title">
+          <input class="choice choice--radio" name="sort" value="0" type="radio" id="sort-title">
           <label class="choice__label" for="sort-title">title</label>
         </li>
         <li>
-          <input onclick="changeSort(this)" class="choice choice--radio" name="sort" value="1" type="radio"
-            id="sort-subscribers">
+          <input class="choice choice--radio" name="sort" value="1" type="radio" id="sort-subscribers">
           <label class="choice__label" for="sort-subscribers">subscribers</label>
         </li>
         <li>
-          <input onclick="changeSort(this)" class="choice choice--radio" name="sort" value="2" type="radio"
-            id="sort-videos">
+          <input class="choice choice--radio" name="sort" value="2" type="radio" id="sort-videos">
           <label class="choice__label" for="sort-videos">videos</label>
         </li>
         <li>
-          <input onclick="changeSort(this)" class="choice choice--radio" name="sort" value="3" type="radio"
-            id="sort-views">
+          <input class="choice choice--radio" name="sort" value="3" type="radio" id="sort-views">
           <label class="choice__label" for="sort-views">views</label>
         </li>
       </ul>
@@ -74,7 +69,7 @@
   </aside>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script src="index.js"></script>
+  <script type="module" src="index.js"></script>
 </body>
 
 </html>
