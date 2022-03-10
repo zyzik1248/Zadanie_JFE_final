@@ -112,22 +112,47 @@ function createHint(hints) {
 
 async function chooseHint(el) {
   try {
-    const elements = document.getElementById("hints");
     const textFilter = document.getElementById("text-filter");
     textFilter.dataset.title = el.title;
     textFilter.value = el.title;
 
-    let child = elements.lastElementChild;
-    while (child) {
-      elements.removeChild(child);
-      child = elements.lastElementChild;
-    }
-    elements.classList.add("hidden");
-
+    hideHints();
     const data = await getChannels();
 
     cerateChannel(data);
   } catch (error) {
     console.log(error);
   }
+}
+
+function hideHints() {
+  const elements = document.getElementById("hints");
+
+  let child = elements.lastElementChild;
+  while (child) {
+    elements.removeChild(child);
+    child = elements.lastElementChild;
+  }
+  elements.classList.add("hidden");
+}
+
+export async function clearFilters() {
+  clearElements();
+  const data = await getChannels();
+  cerateChannel(data);
+}
+
+export function clearElements() {
+  const type = document.querySelector("[data-sortType]");
+  const direction = document.querySelector("[data-sortDirection]");
+  const title = document.querySelector("[data-title]");
+
+  type.dataset.sortType = "";
+  direction.dataset.sortDirection = "1";
+  title.dataset.title = "";
+  title.value = "";
+
+  hideHints();
+  const sortRadios = document.querySelectorAll(`[name="sort"]`);
+  sortRadios.forEach((el) => (el.checked = false));
 }
