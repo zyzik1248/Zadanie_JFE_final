@@ -1,3 +1,4 @@
+import { getChannels } from './axiosChannels.js';
 import {getcharTime} from './dataParser.js'
 
 export function cerateChannel(channels) {

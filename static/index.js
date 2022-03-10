@@ -6,6 +6,7 @@ import {
   clearFilters,
 } from "./filters.js";
 import { cerateChannel, clearElements } from "./createElements.js";
+import { saveVisitors } from "./loacalstorage.js";
 
 window.addEventListener("load", async () => {
   try {
@@ -29,7 +30,24 @@ window.addEventListener("load", async () => {
 
     const clear = document.getElementById("clear");
     clear.addEventListener("click", clearFilters);
+
+    const invertButton = document.getElementById("invert-color");
+    invertButton.addEventListener("click", () => {
+      invertColor(invertButton);
+    });
+
+    // saveVisitors()
   } catch (error) {
     console.log(error);
   }
 });
+
+function invertColor(event) {
+  let inverter = parseInt(event.dataset.color);
+
+  inverter === 1 ? (inverter = 0) : (inverter = 1);
+  event.dataset.color = inverter;
+
+  const html = document.getElementsByTagName("html")[0];
+  html.style.filter = `invert(${100 * inverter}%)`;
+}
