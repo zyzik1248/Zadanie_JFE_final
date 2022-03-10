@@ -13,3 +13,5 @@ Projekt utowrzyłam na linuxie (dystrybucja ubuntu) Podczas wykonywania zadania 
 Dane zwracam za pomocą routingu. W tym calu musiałam pobrać biblioteki koa-body i koa-router. Na Frontendzie dane pobieram za pomocą biblioteki axios.
 
 Aby wyświetlić elementy utworzyłam widok pojedyńczego elementy. Następnie go schowałam i za pomcą javyscript klonuję wszystki elementy w zależności od tego co zwraca channels.json 
+
+Do wyszukiwania danego kanału po tekscie dodałam bibliotekę debounce

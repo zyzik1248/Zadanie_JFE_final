@@ -1,18 +1,17 @@
 import { getChannels } from "./axiosChannels.js";
 import {
-  cerateChannel,
   changeSort,
   changeSortDirection,
   findByText,
   clearFilters,
-  clearElements
 } from "./filters.js";
+import { cerateChannel, clearElements } from "./createElements.js";
 
 window.addEventListener("load", async () => {
   try {
     const textFilter = document.getElementById("text-filter");
     textFilter.addEventListener("input", _.debounce(findByText, 300));
-    clearElements()
+    clearElements();
 
     cerateChannel(await getChannels());
 
