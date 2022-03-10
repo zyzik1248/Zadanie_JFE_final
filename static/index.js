@@ -1,19 +1,25 @@
-import { getChannels } from "./axiosChannels.js";
+import { getChannels } from "./js/axiosChannels.js";
 import {
   changeSort,
   changeSortDirection,
   findByText,
   clearFilters,
-} from "./filters.js";
-import { cerateChannel, clearElements, hideHints } from "./createElements.js";
-import { saveVisitors } from "./loacalstorage.js";
+} from "./js/filters.js";
+import {
+  cerateChannel,
+  clearElements,
+  hideHints,
+} from "./js/createElements.js";
+import { saveVisitors } from "./js/loacalstorage.js";
 
 window.addEventListener("load", async () => {
   try {
     const textFilter = document.getElementById("text-filter");
     textFilter.addEventListener("input", _.debounce(findByText, 300));
-    textFilter.addEventListener("blur", hideHints)
-    textFilter.addEventListener("focus", findByText)
+    textFilter.addEventListener("blur", () => {
+      setTimeout(hideHints, 300);
+    });
+    textFilter.addEventListener("focus", findByText);
 
     clearElements();
 
@@ -39,7 +45,7 @@ window.addEventListener("load", async () => {
       invertColor(invertButton);
     });
 
-    saveVisitors()
+    saveVisitors();
   } catch (error) {
     console.log(error);
   }
