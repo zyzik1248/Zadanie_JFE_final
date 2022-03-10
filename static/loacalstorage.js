@@ -6,6 +6,5 @@ export function saveVisitors() {
   window.localStorage.setItem("visitors", visitors);
 
   const date = new Date();
-
-  window.localStorage.setItem("visitors", getTextDate(date));
+  window.localStorage.setItem("visitors-date", getTextDate(date));
 }

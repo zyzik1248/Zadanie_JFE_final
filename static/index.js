@@ -36,7 +36,7 @@ window.addEventListener("load", async () => {
       invertColor(invertButton);
     });
 
-    // saveVisitors()
+    saveVisitors()
   } catch (error) {
     console.log(error);
   }
