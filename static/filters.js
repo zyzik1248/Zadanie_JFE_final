@@ -1,4 +1,5 @@
 import { getChannels } from "./axiosChannels.js";
+import {getcharTime} from './dataParser.js'
 
 export function cerateChannel(channels) {
   const elements = document.getElementById("channels");
@@ -37,6 +38,10 @@ function changeDataChanel(el, channel, id) {
     channel.statistics.viewCount;
   el.getElementsByClassName("channel__image")[0].src =
     channel.thumbnails.high.url;
+
+  const charTime = getcharTime();
+  const href = `${channel.customUrl}?${charTime}`
+  el.href = href;
 }
 
 export async function changeSort(event) {

@@ -18,6 +18,11 @@ p {
   margin: 0;
 }
 
+a{
+  text-decoration: none;
+  color: black;
+}
+
 b,
 strong {
   font-weight: bolder;

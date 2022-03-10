@@ -12,6 +12,8 @@ export async function getChannels() {
       },
     });
 
+    console.log(resp.data)
+
     return resp.data;
   } catch (error) {
     console.log(error);
