@@ -47,6 +47,19 @@ function sortList(list, type, direction) {
   return l;
 }
 
+function numberPatterns(value) {
+  const numbers = value.replace(/[^0-9]/g, "");
+  return numbers
+    .split("")
+    .reverse()
+    .join("")
+    .match(/.{1,3}/g)
+    .join(",")
+    .split("")
+    .reverse()
+    .join("");
+}
+
 async function runServer() {
   const port = await getPort({ port: 3000 });
   const router = new Router();
@@ -56,11 +69,21 @@ async function runServer() {
     let list = channels.slice();
     const sort = parseInt(ctx.query.sort);
     const direction = ctx.query.direction == -1 ? -1 : 1;
-    const title = ctx.query.title
+    const title = ctx.query.title;
 
     list = sortList(list, sort, direction);
 
-    list = list.filter((el)=>el.title.match(title))
+    list = list.filter((el) => el.title.match(title));
+
+    list = list.map((el) => {
+      el.statistics.subscriberCount = numberPatterns(
+        el.statistics.subscriberCount
+      );
+      el.statistics.videoCount = numberPatterns(el.statistics.videoCount);
+      el.statistics.viewCount = numberPatterns(el.statistics.viewCount);
+
+      return el;
+    });
 
     ctx.body = list;
   });

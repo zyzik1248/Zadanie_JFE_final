@@ -92,3 +92,18 @@ export function clearElements() {
   const sortRadios = document.querySelectorAll(`[name="sort"]`);
   sortRadios.forEach((el) => (el.checked = false));
 }
+
+async function chooseHint(el) {
+  try {
+    const textFilter = document.getElementById("text-filter");
+    textFilter.dataset.title = el.title;
+    textFilter.value = el.title;
+
+    hideHints();
+    const data = await getChannels();
+
+    cerateChannel(data);
+  } catch (error) {
+    console.log(error);
+  }
+}
