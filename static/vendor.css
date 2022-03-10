@@ -90,7 +90,7 @@ button:-moz-focusring {
   background: #ff7b33;
 }
 
-.hidden{
+.hidden {
   display: none !important;
 }
 
@@ -204,12 +204,31 @@ button:-moz-focusring {
 .filter {
   background: #fff;
   padding: 8px;
+  position: relative;
 }
 
 .filter__input:focus,
 .filter__input:hover {
   border-color: #767676;
   box-shadow: 0 0 0 1px #767676;
+}
+
+.hints {
+  position: absolute;
+  bottom: 10px;
+  left: 15px;
+  right: 15px;
+  transform: translateY(100%);
+  background-color: white;
+  border: 1px solid #767676;
+  border-bottom: none;
+}
+
+.hint {
+  border-bottom: 1px solid #767676;
+  font-size: 0.9em;
+  padding: 0.5em;
+  cursor: pointer;
 }
 
 .sort {

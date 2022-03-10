@@ -1,7 +1,28 @@
+window.addEventListener("load", async () => {
+  const textFilter = document.getElementById("text-filter");
+  textFilter.addEventListener("input", _.debounce(findByText, 300));
+  try {
+    cerateChannel(await getChannels());
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 async function getChannels() {
   try {
-    const resp = await axios.get("/channels");
-    cerateChannel(resp.data);
+    const type = document.querySelector("[data-sortType]");
+    const direction = document.querySelector("[data-sortDirection]");
+    const title = document.querySelector("[data-title]");
+
+    const resp = await axios.get("/channels", {
+      params: {
+        sort: type.dataset.sortType,
+        direction: direction.dataset.sortDirection,
+        title: title.dataset.title,
+      },
+    });
+
+    return resp.data;
   } catch (error) {
     console.log(error);
   }
@@ -46,26 +67,11 @@ function changeDataChanel(el, channel, id) {
     channel.thumbnails.high.url;
 }
 
-window.addEventListener("load", getChannels);
-
 async function changeSort(event) {
   try {
     const sortTypeEl = document.querySelector("[data-sortType]");
     sortTypeEl.dataset.sortType = event.value;
-    const direction = document.querySelector("[data-sortDirection]");
-
-    await sort(event.value, direction.dataset.sortDirection);
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-async function sort(type, direction) {
-  try {
-    const resp = await axios.get("/channels", {
-      params: { sort: type, direction },
-    });
-    cerateChannel(resp.data);
+    cerateChannel(await getChannels());
   } catch (error) {
     console.log(error);
   }
@@ -84,7 +90,73 @@ async function changeSortDirection(event) {
       event.dataset.sortDirection = -1;
     }
 
-    await sort(sortTypeEl.dataset.sortType, event.dataset.sortDirection);
+    cerateChannel(await getChannels());
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function findByText() {
+  try {
+    const textFilter = document.getElementById("text-filter");
+    textFilter.dataset.title = textFilter.value;
+    const data = await getChannels();
+
+    if (textFilter.value) {
+      const hints =
+        data.length === 1 && textFilter.value === data[0].title ? [] : data;
+
+      createHint(hints);
+    } else {
+      createHint([]);
+    }
+    cerateChannel(data);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+function createHint(hints) {
+  const elements = document.getElementById("hints");
+
+  let child = elements.lastElementChild;
+  while (child) {
+    elements.removeChild(child);
+    child = elements.lastElementChild;
+  }
+
+  hints.length > 0
+    ? elements.classList.remove("hidden")
+    : elements.classList.add("hidden");
+
+  hints.forEach((el) => {
+    const newElement = document.createElement("p");
+    newElement.innerHTML = el.title;
+    newElement.classList.add("hint");
+
+    newElement.addEventListener("click", () => chooseHint(el));
+
+    elements.appendChild(newElement);
+  });
+}
+
+async function chooseHint(el) {
+  try {
+    const elements = document.getElementById("hints");
+    const textFilter = document.getElementById("text-filter");
+    textFilter.dataset.title = el.title;
+    textFilter.value = el.title;
+
+    let child = elements.lastElementChild;
+    while (child) {
+      elements.removeChild(child);
+      child = elements.lastElementChild;
+    }
+    elements.classList.add("hidden");
+
+    const data = await getChannels();
+
+    cerateChannel(data);
   } catch (error) {
     console.log(error);
   }

@@ -56,8 +56,11 @@ async function runServer() {
     let list = channels.slice();
     const sort = parseInt(ctx.query.sort);
     const direction = ctx.query.direction == -1 ? -1 : 1;
+    const title = ctx.query.title
 
     list = sortList(list, sort, direction);
+
+    list = list.filter((el)=>el.title.match(title))
 
     ctx.body = list;
   });
