@@ -68,7 +68,7 @@ export function createHint(hints) {
   });
 }
 
-function hideHints() {
+export function hideHints() {
   const elements = document.getElementById("hints");
 
   let child = elements.lastElementChild;

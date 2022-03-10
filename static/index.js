@@ -5,13 +5,16 @@ import {
   findByText,
   clearFilters,
 } from "./filters.js";
-import { cerateChannel, clearElements } from "./createElements.js";
+import { cerateChannel, clearElements, hideHints } from "./createElements.js";
 import { saveVisitors } from "./loacalstorage.js";
 
 window.addEventListener("load", async () => {
   try {
     const textFilter = document.getElementById("text-filter");
     textFilter.addEventListener("input", _.debounce(findByText, 300));
+    textFilter.addEventListener("blur", hideHints)
+    textFilter.addEventListener("focus", findByText)
+
     clearElements();
 
     cerateChannel(await getChannels());

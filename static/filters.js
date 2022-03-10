@@ -1,5 +1,5 @@
 import { getChannels } from "./axiosChannels.js";
-import {cerateChannel, createHint, clearElements} from './createElements.js'
+import { cerateChannel, createHint, clearElements } from "./createElements.js";
 
 export async function changeSort(event) {
   try {
@@ -16,10 +16,10 @@ export async function changeSortDirection(event) {
     const direction = parseInt(event.dataset.sortDirection);
 
     if (direction == -1) {
-      event.innerHTML = "ascending";
+      event.innerHTML = "descending";
       event.dataset.sortDirection = 1;
     } else {
-      event.innerHTML = "descending";
+      event.innerHTML = "ascending";
       event.dataset.sortDirection = -1;
     }
 
@@ -36,7 +36,8 @@ export async function findByText() {
     const data = await getChannels();
 
     if (textFilter.value) {
-      const hints = data.length === 1 ? [] : data;
+      const hints =
+        data.length === 1 && data[0].title === textFilter.value ? [] : data;
 
       createHint(hints);
     } else {
